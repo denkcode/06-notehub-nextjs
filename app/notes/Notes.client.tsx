@@ -5,7 +5,7 @@ import NoteList from '@/components/NoteList/NoteList'
 import { useState } from 'react'
 import Pagination from '@/components/Pagination/Pagination';
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
-import { fetchNotes } from '@/lib/api'
+import { fetchNotes, FetchNotesResponse } from '@/lib/api'
 import Modal from '@/components/Modal/Modal';
 import { useDebouncedCallback } from 'use-debounce'
 import SearchBox from '@/components/SearchBox/SearchBox';
@@ -19,9 +19,9 @@ export default function Notes() {
       setSearch(value);
       setPage(1);
       }, 300);
-      const { data, isLoading, isError } = useQuery({
+      const { data, isLoading, isError } = useQuery<FetchNotesResponse>({
         throwOnError: true,
-        queryKey: ['notes', page, search],
+        queryKey: ['note', page, search],
         queryFn: () => fetchNotes(page, search),
         placeholderData: keepPreviousData,
 })
