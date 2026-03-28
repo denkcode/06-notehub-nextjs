@@ -5,7 +5,7 @@ import { fetchNotes } from "@/lib/api"
 export default async function NotesPage() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-      queryKey: ['note', 1, ''],
+      queryKey: ['notes', 1, ''],
       queryFn: () => fetchNotes(1, ''),
     });
   return (
