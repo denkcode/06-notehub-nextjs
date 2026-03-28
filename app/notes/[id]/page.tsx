@@ -13,7 +13,7 @@ export default async function NotesPages({ params }: { params: Promise<{ id: str
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['notes', id],
+    queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),
   });
 
